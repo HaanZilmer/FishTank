@@ -12,8 +12,9 @@
         HorizontalLine fastLine = new HorizontalLine(50, 2.5);
         
         Fish randomFish = new Fish(200, 100);  
+        Squid randomSquid = new Squid(300, 200);
         
-        int WINDOW_WIDTH = 600;
+        int WINDOW_WIDTH = 1250;
         int WINDOW_HEIGHT = 600;
         
         int REFRESH_RATE_PER_SECOND = 30;
@@ -34,11 +35,13 @@
         
           background(BLUE);
         
-          slowLine.updateAndRedraw(); 
+          //slowLine.updateAndRedraw(); 
         
-          fastLine.updateAndRedraw();  
+          //fastLine.updateAndRedraw();  
           
           randomFish.drawFish();
+
+          randomSquid.drawSquid();
         
         } 
         
@@ -121,6 +124,44 @@
         	
         	}
         
+        }
+
+        class Squid
+        {
+          //attributes
+          var centerX, centerY, bodyHeight, bodyLength, tailHeight, tailWidth, bodyColor;
+
+          //constructor 
+          Squid(var bh, var bl)
+          {
+            //attributes on the left, parameters on the right
+            bodyHeight = bh;
+            bodyLength = bl; 
+            tailHeight = random(20,30); 
+            tailWidth = random(10, 15);
+            bodyColor = color(255, 0, 0); 
+            centerX = random(100, 400);
+            centerY = random(100, 400);   
+          }
+
+          void drawSquid()
+          {
+            //squid
+            fill(242, 17, 242);
+            // body2
+            ellipse(centerX, centerY+100, bodyLength+150, bodyHeight-20);
+            // head
+            triangle(centerX-bodyLength/2-100, centerY+100,
+                    centerX-bodyLength/2-tailWidth, centerY-tailHeight+100,
+                    centerX-bodyLength/2-tailWidth, centerY+tailHeight+100);
+            // eye2
+            fill(33, 33, 33);
+            ellipse(centerX+bodyLength/4-85, centerY+89, bodyHeight/5, bodyHeight/5);
+            fill(33, 33, 33);
+            ellipse(centerX+bodyLength/4-85, centerY+110, bodyHeight/5, bodyHeight/5);
+
+          }
+
         }
         </script> 
     </head>
