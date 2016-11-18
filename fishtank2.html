@@ -13,12 +13,13 @@
         
         Fish randomFish = new Fish(200, 100);  
         Squid randomSquid = new Squid(300, 200);
+        Shark randomShark = new Shark(100, 50);
         
         int WINDOW_WIDTH = 1250;
         int WINDOW_HEIGHT = 600;
         
         int REFRESH_RATE_PER_SECOND = 30;
-        int BLUE = 10;
+        int BLACK = 0;
         //runs once at the start of the program 
         void setup() 
         {
@@ -33,7 +34,7 @@
         //called repeatedly 
         void draw() { 
         
-          background(BLUE);
+          background(BLACK);
         
           //slowLine.updateAndRedraw(); 
         
@@ -42,6 +43,8 @@
           randomFish.drawFish();
 
           randomSquid.drawSquid();
+
+          randomShark.drawShark();
         
         } 
         
@@ -149,20 +152,65 @@
             //squid
             fill(242, 17, 242);
             // body2
-            ellipse(centerX, centerY+100, bodyLength+150, bodyHeight-20);
+            ellipse(centerX, centerY+100, bodyLength*1.5, bodyHeight/4);
             // head
             triangle(centerX-bodyLength/2-100, centerY+100,
-                    centerX-bodyLength/2-tailWidth, centerY-tailHeight+100,
-                    centerX-bodyLength/2-tailWidth, centerY+tailHeight+100);
+                    centerX-bodyLength/2-tailWidth+40, centerY-tailHeight+70,
+                    centerX-bodyLength/2-tailWidth+40, centerY+tailHeight+130);
             // eye2
             fill(33, 33, 33);
-            ellipse(centerX+bodyLength/4-85, centerY+89, bodyHeight/5, bodyHeight/5);
+            ellipse(centerX+bodyLength/4-85, centerY+89, bodyHeight/15, bodyHeight/15);
             fill(33, 33, 33);
-            ellipse(centerX+bodyLength/4-85, centerY+110, bodyHeight/5, bodyHeight/5);
-
+            ellipse(centerX+bodyLength/4-85, centerY+110, bodyHeight/15, bodyHeight/15);
           }
 
         }
+
+        class Shark
+        {
+         //attributes
+         var centerX, centerY, bodyHeight, bodyLength, tailHeight, tailWidth, bodyColor;
+        
+         //constructor 
+         Shark(var bh, var bl)
+          {
+            //attributes on the left, parameters on the right
+            bodyHeight = bh;
+            bodyLength = bl; 
+            tailHeight = random(20,30); 
+            tailWidth = random(10, 15);
+            bodyColor = color(255, 0, 0); 
+            centerX = random(100, 400);
+            centerY = random(100, 400);   
+          }
+
+         void drawShark()
+          {
+            noStroke();
+            fill(92, 88, 92);
+            // body3
+            ellipse(centerX, centerY+200, bodyLength+150, bodyHeight-20);
+            // tail3
+            var tailWidth = bodyLength/4;
+            var tailHeight = bodyHeight/2;
+            triangle(centerX-bodyLength/2-65, centerY+200,
+            centerX-bodyLength/2-tailWidth-100, centerY-tailHeight+175,
+            centerX-bodyLength/2-tailWidth-100, centerY+tailHeight+225);
+            fill(0, 0, 0);
+            triangle(centerX-bodyLength/2-105, centerY+200,
+            centerX-bodyLength/2-tailWidth-100, centerY-tailHeight+175,
+            centerX-bodyLength/2-tailWidth-100, centerY+tailHeight+225);
+            fill(92, 88, 92);
+            triangle(centerX+bodyLength/4-10, centerY+175, centerX+bodyLength/4-40, centerY+175, centerX+bodyLength/4-39, centerY+147); 
+            triangle(centerX+bodyLength/4-33, centerY+267, centerX+bodyLength/4+40, centerY+200, centerX+bodyLength/4-20, centerY+213);
+            // eye3
+            fill(33, 33, 33);
+            ellipse(centerX+bodyLength/4 + 54, centerY+193, bodyHeight/7, bodyHeight/10);
+            stroke(0, 0, 0);
+            strokeWeight(2);
+          }
+
+       }
         </script> 
     </head>
     
